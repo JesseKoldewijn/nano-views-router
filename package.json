@@ -1,0 +1,31 @@
+{
+	"name": "nano-views-mono",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "turbo dev",
+		"build": "turbo build",
+		"build:package": "turbo run build:package",
+		"preview": "turbo preview",
+		"lint": "turbo lint",
+		"test": "turbo test",
+		"test:run": "turbo test:run",
+		"test:watch": "turbo test:watch"
+	},
+	"workspaces": [
+		"web-preact",
+		"packages/*"
+	],
+	"devDependencies": {
+		"@types/node": "^24.6.2",
+		"prettier": "^3.6.2",
+		"turbo": "^2.5.8",
+		"typescript": "~5.9.3"
+	},
+	"packageManager": "yarn@4.10.3",
+	"volta": {
+		"node": "24.9.0",
+		"yarn": "4.10.3"
+	}
+}

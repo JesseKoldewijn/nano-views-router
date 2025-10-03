@@ -1,0 +1,42 @@
+{
+	"name": "nano-views-router",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build:package": "tsup",
+		"dev": "tsup --watch",
+		"test": "vitest",
+		"test:run": "vitest run",
+		"test:watch": "vitest --watch"
+	},
+	"dependencies": {
+		"@nanostores/react": "^1.0.0",
+		"nanostores": "^1.0.1"
+	},
+	"devDependencies": {
+		"@types/node": "^24.6.2",
+		"fast-glob": "^3.3.3",
+		"prettier": "^3.6.2",
+		"tsup": "^8.5.0",
+		"typescript": "~5.9.3",
+		"vite": "npm:rolldown-vite@7.1.15",
+		"vitest": "^3.2.4"
+	},
+	"packageManager": "yarn@4.10.3",
+	"volta": {
+		"extends": "../package.json"
+	}
+}
