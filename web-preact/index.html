@@ -1,13 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="SSR_THEME">
 	<head>
 		<meta charset="UTF-8" />
 		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>nano-views</title>
+		<title>Nano Views Router</title>
+		<meta
+			name="description"
+			content="A tiny, fast, and simple file-based router for Preact and React (for now)."
+		/>
+		<!--app-head-->
 	</head>
 	<body>
-		<div id="app"></div>
-		<script type="module" src="/src/main.tsx"></script>
+		<div id="app"><!--app-html--></div>
+		<script type="module" src="/src/entry-client.tsx"></script>
 	</body>
 </html>

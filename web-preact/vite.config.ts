@@ -10,12 +10,21 @@ const config = defineConfig({
 		}),
 	],
 	build: {
-		outDir: "dist",
+		outDir: "dist/client",
+		rollupOptions: {
+			input: {
+				main: "./index.html",
+			},
+		},
 	},
 	resolve: {
 		alias: {
 			"@": "/src",
 		},
+	},
+	ssr: {
+		// For SSR builds
+		noExternal: ["preact", "preact/compat", "preact-render-to-string"],
 	},
 });
 

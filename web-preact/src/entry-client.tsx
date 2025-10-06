@@ -1,13 +1,10 @@
 import { Suspense } from "preact/compat";
-import { createRoot } from "preact/compat/client";
+import { hydrateRoot } from "preact/compat/client";
 import App from "./app";
 import { routes } from "./views.gen";
 import "./styles/tailwind.css";
 
-console.log("Hello, World!");
-
 const currentPath = window.location.pathname;
-console.log("Current Path:", currentPath);
 
 const currentView = routes
 	.filter((route) => {
@@ -22,12 +19,11 @@ const errorPages = routes.filter((route) => {
 const appDiv = document.getElementById("app");
 if (!appDiv) console.error("App div not found");
 
-const root = createRoot(appDiv!);
-
 const notFoundPage = routes.find((route) => route.pathName === "/404");
 
-root.render(
-	<Suspense fallback={<div>Loading...</div>}>
+hydrateRoot(
+	appDiv!,
+	<Suspense fallback={null}>
 		{currentView ? (
 			<App Component={currentView.dynamicComponent} />
 		) : (

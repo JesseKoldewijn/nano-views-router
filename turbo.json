@@ -17,7 +17,7 @@
 			"dependsOn": ["^check-types"]
 		},
 		"dev": {
-			"dependsOn": ["build:package", "^build"],
+			"dependsOn": ["^build:package"],
 			"persistent": true,
 			"cache": false
 		},

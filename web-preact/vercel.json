@@ -1,4 +1,21 @@
 {
 	"$schema": "https://openapi.vercel.sh/vercel.json",
-	"rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+	"buildCommand": "cd .. && yarn build:package && cd web-preact && yarn build",
+	"installCommand": "yarn install",
+	"outputDirectory": "dist/client",
+	"functions": {
+		"api/**/*.ts": {
+			"includeFiles": "{dist/**,../dist/**}"
+		}
+	},
+	"rewrites": [
+		{
+			"source": "/assets/:path*",
+			"destination": "/assets/:path*"
+		},
+		{
+			"source": "/(.*)",
+			"destination": "/api/ssr"
+		}
+	]
 }

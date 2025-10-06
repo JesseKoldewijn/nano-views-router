@@ -1,0 +1,39 @@
+import { renderToStringAsync } from "preact-render-to-string";
+import { routes } from "./views.gen";
+
+// Simple SSR App component without the problematic providers
+function SSRApp({
+	Component,
+}: Readonly<{ Component: preact.ComponentType<any> }>) {
+	return <Component />;
+}
+
+export async function render_app(
+	url: string,
+	{
+		cookies: _cookies,
+	}: {
+		cookies: string;
+	}
+) {
+	// Find matching route
+	const currentRoute = routes.find((route) => route.pathName === url);
+	const notFoundRoute = routes.find((route) => route.pathName === "/404");
+
+	const ComponentToRender = currentRoute
+		? currentRoute.dynamicComponent
+		: notFoundRoute?.dynamicComponent || (() => <div>404 Not Found</div>);
+
+	// Render the app to string with async support for Suspense
+	const html = await renderToStringAsync(
+		<SSRApp Component={ComponentToRender} />
+	);
+
+	// In production, CSS is automatically injected by Vite into the HTML template
+	// In development, Vite handles CSS injection through HMR
+	// So we don't need to manually add CSS links here
+	return {
+		html,
+		head: "",
+	};
+}
