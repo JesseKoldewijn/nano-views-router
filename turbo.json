@@ -2,7 +2,7 @@
 	"$schema": "https://turborepo.com/schema.json",
 	"tasks": {
 		"preview": {
-			"dependsOn": ["^preview", "build:package", "build"],
+			"dependsOn": ["^preview", "^build:package", "build"],
 			"outputs": []
 		},
 		"build:package": {
@@ -10,7 +10,7 @@
 			"outputs": ["dist/**"]
 		},
 		"build": {
-			"dependsOn": ["build:package", "^build"],
+			"dependsOn": ["^build:package"],
 			"outputs": ["dist/**"]
 		},
 		"check-types": {
@@ -18,8 +18,8 @@
 		},
 		"dev": {
 			"dependsOn": ["^build:package"],
-			"persistent": true,
-			"cache": false
+			"persistent": false,
+			"cache": true
 		},
 		"test": {
 			"dependsOn": ["^test", "build:package"],

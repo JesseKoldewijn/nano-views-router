@@ -4,7 +4,7 @@ import App from "./app";
 import { routes } from "./views.gen";
 import "./styles/tailwind.css";
 
-const currentPath = window.location.pathname;
+const currentPath = globalThis.window.location.pathname;
 
 const currentView = routes
 	.filter((route) => {
@@ -12,7 +12,7 @@ const currentView = routes
 	})
 	.find((route) => route.pathName === currentPath);
 
-const errorPages = routes.filter((route) => {
+const errorPages = routes.find((route) => {
 	return route.pathName.match(/^\/(0-9){3}$/);
 });
 
@@ -30,7 +30,7 @@ hydrateRoot(
 			<App
 				Component={
 					notFoundPage?.dynamicComponent ||
-					errorPages[0]?.dynamicComponent ||
+					errorPages?.dynamicComponent ||
 					(() => <div>404 Not Found</div>)
 				}
 			/>
