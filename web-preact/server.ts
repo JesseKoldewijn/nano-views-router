@@ -18,7 +18,7 @@ const router = createRouter();
 
 // Add Vite or respective production middlewares
 let vite: any;
-if (!isProduction) {
+if (isProduction === false) {
 	vite = await createViteServer({
 		server: { middlewareMode: true },
 		appType: "custom",
@@ -56,13 +56,15 @@ router.get("*", async (context) => {
 
 		let template: string;
 		let render: any;
+		let cssPath: string | null = null;
 
-		if (!isProduction) {
+		if (isProduction === false) {
 			// Always read fresh template in development
 			template = await fs.readFile("./index.html", "utf-8");
 			template = await vite.transformIndexHtml(pathname, template);
 			render = (await vite.ssrLoadModule("/src/entry-server.tsx"))
 				.render_app;
+			cssPath = "/src/styles/tailwind.css";
 		} else {
 			template = templateHtml;
 			render = (await import("./dist/server/entry-server.js")).render_app;
@@ -74,13 +76,20 @@ router.get("*", async (context) => {
 			cookies: requestCookies,
 		});
 
+		let headContent = cssPath
+			? `<link data-ssr-id="ssr-styles" rel="stylesheet" href="${cssPath}">`
+			: "";
+		if (rendered.head) {
+			headContent += rendered.head;
+		}
+
 		const themeCookie = requestCookies
 			.split("; ")
 			.find((row) => row.startsWith("theme="));
 		const theme = themeCookie ? themeCookie.split("=")[1] : "dark";
 
 		const html = template
-			.replace("<!--app-head-->", rendered.head ?? "")
+			.replace("<!--app-head-->", headContent)
 			.replace("<!--app-html-->", rendered.html ?? "")
 			.replace("SSR_THEME", theme ?? "");
 

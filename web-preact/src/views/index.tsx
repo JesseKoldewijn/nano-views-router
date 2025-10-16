@@ -1,19 +1,7 @@
 import { useSignal } from "@preact/signals";
 
-const useSignalPolyfill = () => {
-	let signal = useSignal;
-	const fallbackSignal = <T,>(initialValue: T) => ({ value: initialValue });
-
-	if (globalThis.window === undefined) {
-		signal = fallbackSignal as typeof useSignal;
-	}
-
-	return signal;
-};
-
 const LandingPage = () => {
-	const signal = useSignalPolyfill();
-	const count = signal(0);
+	const count = useSignal(0);
 
 	return (
 		<div className="min-h-screen bg-background p-8 w-full items-center-safe flex justify-center-safe">
