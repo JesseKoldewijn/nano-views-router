@@ -15,6 +15,19 @@ const config = defineConfig({
 			input: {
 				main: "./index.html",
 			},
+			output: {
+				advancedChunks: {
+					groups: [
+						{
+							name: "framework",
+							test: (module) =>
+								module.includes("node_modules") &&
+								(module.includes("preact") ||
+									module.includes("react")),
+						},
+					],
+				},
+			},
 		},
 	},
 	resolve: {
