@@ -10,6 +10,8 @@ const LandingPage = () => {
 					Welcome to the Landing Page
 				</h1>
 
+				<a href="/list">Go to List Page</a>
+
 				<hr />
 
 				<p className="text-lg text-foreground text-center">

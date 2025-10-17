@@ -1,10 +1,5 @@
-import {
-	createContext,
-	useContext,
-	useEffect,
-	useMemo,
-	useState,
-} from "preact/compat";
+import { createContext } from "preact/compat";
+import { useContext, useEffect, useMemo, useState } from "preact/hooks";
 
 type Theme = "dark" | "light" | "system";
 

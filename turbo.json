@@ -33,6 +33,14 @@
 			"dependsOn": ["^test:watch", "build:package"],
 			"persistent": true,
 			"cache": false
+		},
+		"clean": {
+			"outputs": [
+				".turbo/**",
+				"packages/*/dist/**",
+				"web-preact/dist/**",
+				"web-preact/dist-server/**"
+			]
 		}
 	}
 }
