@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import { viteViewsLinkerPlugin } from "nano-views-router";
 import tailwindcss from "@tailwindcss/vite";
+import preact from "@preact/preset-vite";
 
 const config = defineConfig({
 	plugins: [
@@ -8,7 +9,11 @@ const config = defineConfig({
 		viteViewsLinkerPlugin({
 			framework: "preact",
 		}),
+		preact(),
 	],
+	optimizeDeps: {
+		include: ["nano-views-router", "@nvr/preact"],
+	},
 	build: {
 		outDir: "dist/client",
 		rollupOptions: {
