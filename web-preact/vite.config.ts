@@ -6,6 +6,7 @@ import preact from "@preact/preset-vite";
 const config = defineConfig({
 	plugins: [
 		tailwindcss(),
+		preact(),
 		viteViewsLinkerPlugin({
 			framework: "preact",
 		}),
