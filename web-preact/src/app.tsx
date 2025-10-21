@@ -2,9 +2,11 @@ import { ThemeProvider } from "./providers/theme";
 
 const App = ({ Component }: { Component: preact.ComponentType<any> }) => {
 	return (
-		<ThemeProvider>
-			<Component />
-		</ThemeProvider>
+		<main>
+			<ThemeProvider>
+				<Component />
+			</ThemeProvider>
+		</main>
 	);
 };
 
