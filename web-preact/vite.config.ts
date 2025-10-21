@@ -12,7 +12,7 @@ const config = defineConfig({
 		}),
 	],
 	optimizeDeps: {
-		include: ["nano-views-router", "@nvr/preact"],
+		include: ["nano-views-router"],
 	},
 	build: {
 		outDir: "dist/client",
@@ -43,8 +43,6 @@ const config = defineConfig({
 	ssr: {
 		// For SSR builds
 		noExternal: ["preact-render-to-string"],
-		// Recover from failed imports in SSR in-case they only work in the browser
-		external: ["@preact/signals"],
 		target: "node",
 	},
 });

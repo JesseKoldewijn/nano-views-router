@@ -1,5 +1,5 @@
 import { renderToStringAsync } from "preact-render-to-string";
-import { routes } from "./views.gen";
+import { AppRoutes } from "./routes";
 
 // Simple SSR App component without the problematic providers
 function SSRApp({
@@ -20,8 +20,10 @@ export async function render_app(
 ) {
 	try {
 		// Find matching route
-		const currentRoute = routes.find((route) => route.pathName === url);
-		const notFoundRoute = routes.find((route) => route.pathName === "/404");
+		const currentRoute = AppRoutes.find((route) => route.pathName === url);
+		const notFoundRoute = AppRoutes.find(
+			(route) => route.pathName === "/404"
+		);
 
 		const ComponentToRender = currentRoute
 			? currentRoute.dynamicComponent
