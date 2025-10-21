@@ -10,7 +10,6 @@ const config = defineConfig({
 		viteViewsLinkerPlugin({
 			framework: "preact",
 		}),
-		preact(),
 	],
 	optimizeDeps: {
 		include: ["nano-views-router", "@nvr/preact"],
