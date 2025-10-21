@@ -67,6 +67,7 @@ router.get("*", async (context) => {
 			cssPath = "/src/styles/tailwind.css";
 		} else {
 			template = templateHtml;
+			// @ts-expect-error
 			render = (await import("./dist/server/entry-server.js")).render_app;
 		}
 
